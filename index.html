@@ -2,15 +2,70 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Fav Character</title>
+    <title></title>
   </head>
   <body>
-    <form class="" action="/" method="post">
-      <label for="">Character</label>
-      <input type="text" name="query" placeholder="Enter Your Fav Character">
-      <button type="submit" name="button" onclick="getData()">Go</button>
 
-    </form>
+    <script type="text/javascript">
+    //Accepting Number from the user
+    var n=prompt("Enter n ");
+    var i,j,flag=0;
+    //declaring an array
+    var a=[];
+    var ct=0;
+    var flag=0;
+    var flag1;
+    //starting for loop to accept n number of strings in an array
+    for(i=0;i<n;i++){
+      a[i]=prompt("Enter string  ");
+    }
+    for(i=0;i<n;i++)
+    {
+      for(j=0;j<i;j++)
+      {
+        if(a[i].localeCompare(a[j])===0){
+          ct++;
+            //flag used to store the positions where same elements are
+            flag=j;
+            flag1=i;
+        }
+      }
+    }
+    //printing number of  distinct words
+    document.write((n-ct)+" ");
+    document.write("<br/>");
+    //printing how many times a word appears
+    for(i=0;i<n;i++){
+
+
+      if(i===flag){
+        //printing the repeating word
+        document.write(" "+(ct+1)+" ");
+      }
+      else if (i===flag1) {
+        //to skip the position where the word id repeated
+        document.write(" ");
+
+      }
+      else{
+        //printing 1 at postions which have no repetation
+        document.write(" 1 ");
+
+      }
+    }
+    document.write("<br\>");
+    //printing the repeated word
+    document.write(a[flag]+"<br\>");
+    for(i=0;i<n;i++){
+      if(i===flag||i===flag1)
+      continue;
+      else
+      //printing all other words
+      document.write(a[i]+"<br\>");
+    }
+
+
+    </script>
 
   </body>
 </html>
