@@ -1,7 +1,7 @@
 {
-  "name": "say-my-name",
+  "name": "p3",
   "version": "1.0.0",
-  "description": "Say My Name",
+  "description": "P3",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,11 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
-    "body-parse": "^0.1.0",
+    "body-parser": "^1.20.0",
     "cross-fetch": "^3.1.5",
     "express": "^4.18.1",
     "fetch": "^1.1.0",
     "jsdom": "^20.0.0",
-    "node-fetch": "^2.6.7"
+    "mongoose": "^6.6.1",
+    "node-fetch": "^2.6.1"
   }
 }
