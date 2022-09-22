@@ -4,27 +4,10 @@ const app=express();
 
 const bodyParser=require("body-parser");
 
-
 const fetch=require('node-fetch');
 
-//to include mongoose
-const mongoose = require("mongoose");
-//connecting mongoose
-mongoose.connect("mongodb://localhost:27017/favCharacterDB",{useNewUrlParser: true});
-//creating a schema
-const favcharSchema={
-  char_id: Number,
-  name: String,
-  status: String,
-  nickname: String,
-  portrayed: String,
-  category: String,
-  img: String,
-}
 
-const Favchar=mongoose.model("Favchar",favcharSchema);
-
-
+//in order to get access to the post data
 app.use(bodyParser.urlencoded({extended:true}));
 app.listen(3000,function(){
   console.log("Server on port 3000");
@@ -35,8 +18,10 @@ app.get("/",function(req,res){
 });
 
 const url="https://breakingbadapi.com/api/characters";
+//async returns a promise
 async function getData(){
   const response=await fetch(url);
+  //response.json returns a promise that resolves to a js object
   const data = await response.json();
   return data;
 }
@@ -44,6 +29,7 @@ const a=getData();
 a.then(d=>console.log(d));
 
 app.post("/",function(req,res){
+  //take the value entered by the user
   const n=req.body.query;
   async function postData(){
     const response=await fetch("https://breakingbadapi.com/api/characters?name="+n);
@@ -52,17 +38,6 @@ app.post("/",function(req,res){
   }
   const character=postData();
   character.then(c=>{
-
-    const fav=new Favchar({
-      char_id: c[0].char_id,
-      name: c[0].name,
-      status: c[0].status,
-      nickname: c[0].nickname,
-      portrayed: c[0].portrayed,
-      img: c[0].img,
-      category: c[0].category,
-
-    });
     var nm=c[0].name;
     var bd=c[0].birthday;
     var occ=c[0].occupation;
@@ -80,8 +55,6 @@ app.post("/",function(req,res){
     res.write("<p>Portrayed By : "+p+"</p>");
 
     res.send();
-    fav.save();
-    res.redirect("/");
   });
 
 });
