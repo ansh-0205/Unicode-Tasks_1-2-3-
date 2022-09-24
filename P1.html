@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>P1</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var i,j,n,ct=0,ct1=1,m=0;
+      var a=[];//for storing users input
+
+      var c=[];//for storing repeated elements
+      var d=[];//for storing pos where values are repeated
+      n=prompt("Enter n :");
+      for(i=0;i<n;i++){
+        a[i]=prompt("Enter a : ");
+      }
+
+      for(i=0;i<n-1;i++){
+        for(j=i+1;j<=n;j++){
+          if(a[i]===a[j]){
+            ct++;
+            c[m]=a[i];
+            m++;
+            d[m]=j;
+          }
+        }
+      }
+      //replacing elements with " " where repetation occurs
+      for(i=0;i<d.length;i++){
+        a[d[i]]="";
+      }
+      if(n!=ct){
+      document.write(n-ct);
+      }
+      else{
+        document.write(ct);
+      }
+      var s=c.length;
+
+      document.write("<br />");
+      for(i=0;i<a.length-1;i++){
+        for(j=0;j<s;j++){
+          if(a[i]==c[j]){
+            ct1++;
+          }
+        }
+        if(ct1===1){
+          document.write("1");
+        }
+        else{
+          document.write(ct1);
+
+        }
+        ct1=1;
+      }
+
+
+
+    </script>
+
+  </body>
+</html>
